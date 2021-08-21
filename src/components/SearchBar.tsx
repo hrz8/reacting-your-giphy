@@ -1,17 +1,17 @@
 import React, { FC, useMemo } from 'react'
 import debounce from 'lodash.debounce'
 
-interface SearcBarProp {
+interface SearcBarProps {
   keyword: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onDebounceChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const SearchBar: FC<SearcBarProp> = ({
+const SearchBar: FC<SearcBarProps> = ({
   keyword,
   onChange,
   onDebounceChange,
-}: SearcBarProp): JSX.Element => {
+}: SearcBarProps): JSX.Element => {
   const onDebounceChanged = useMemo(() => {
     return debounce(onDebounceChange, 500)
   }, [])
@@ -20,6 +20,7 @@ const SearchBar: FC<SearcBarProp> = ({
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="mb-5">
         <input
+          autoFocus={true}
           type="text"
           className="form-control"
           id="inputQuery"

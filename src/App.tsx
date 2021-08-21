@@ -6,7 +6,7 @@ import Routes from './Routes'
 const App: FC = (): JSX.Element => {
   return (
     <Router>
-      <div className="container mt-5">
+      <div className="container mt-5 mb-5">
         <div className="row justify-content-md-center">
           <Routes />
         </div>

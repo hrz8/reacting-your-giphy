@@ -11,10 +11,10 @@ const Home: FC = (): JSX.Element => {
       <p className="col-xs-6 text-center">Decide your Giphy Mode! 👾</p>
       <div className="text-center">
         <Link to="/search" className="btn btn-primary m-2">
-          Search Your Giphy
+          Search Your Giphy 🕵️‍♂️
         </Link>
         <Link to="/search?q=iron+man" className="btn btn-primary m-2">
-          Iron Man Giphy
+          Iron Man Giphy 🦾🤖
         </Link>
       </div>
     </>

@@ -7,7 +7,12 @@ import SearchBar from '../components/SearchBar'
 import AlertFailed from '../components/alert/Failed'
 import AlertNotFound from '../components/alert/NotFound'
 
-import giphy from '../libs/giphy'
+import giphy, {
+  GiphyDataResponse,
+  GiphyPaginationResponse,
+  GiphyQueryParams,
+} from '../libs/giphy'
+import GifList from '../components/gif/List'
 
 const useQuery = () => new URLSearchParams(useLocation().search)
 
@@ -22,29 +27,32 @@ const Search: FC = (): JSX.Element => {
   )
   const [finalQuery, setFinalQuery] = useState<string>(keywordUser)
 
-  const giphyEndpoint = giphy.endpointGenerator({
+  const giphyParams: GiphyQueryParams = {
     api_key: import.meta.env.VITE_GIPHY_API_KEY,
     q: finalQuery,
     limit: 9,
+  }
+  const giphyEndpoint = giphy.endpointGenerator(giphyParams)
+  const { isLoading, error, data } = useFetch<{
+    data: GiphyDataResponse[]
+    pagination: GiphyPaginationResponse
+  }>(giphyEndpoint, {
+    depends: [!!finalQuery],
   })
-  const { isLoading, error, data } = useFetch<{ data: Array<{ id: string }> }>(
-    giphyEndpoint,
-    {
-      depends: [!!finalQuery],
-    }
-  )
 
-  let Alert = <div />
+  let ContentOrAlert = <div />
   if (isLoading) {
-    Alert = (
+    ContentOrAlert = (
       <div className="spinner-border text-center" role="status">
         <span className="visually-hidden">Loading ⏳ ...</span>
       </div>
     )
   } else if (error) {
-    Alert = <AlertFailed />
+    ContentOrAlert = <AlertFailed />
   } else if (data && !data.data.length) {
-    Alert = <AlertNotFound />
+    ContentOrAlert = <AlertNotFound />
+  } else if (data?.data.length) {
+    ContentOrAlert = <GifList data={data.data} pagination={data.pagination} />
   }
 
   return (
@@ -61,7 +69,7 @@ const Search: FC = (): JSX.Element => {
           }}
         />
       </div>
-      <div className="row justify-content-md-center">{Alert}</div>
+      <div className="row justify-content-center">{ContentOrAlert}</div>
     </>
   )
 }
