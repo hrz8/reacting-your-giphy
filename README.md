@@ -2,7 +2,7 @@
 
 ## What's going on here?
 
-- [Features Checklist ✅](#feature-checklist-)
+- [Features Checklist ✅](#features-checklist-)
 - [App Usage 👟](#app-usage-)
 - [Build and Deployment 🚀](#build-and-deployment-)
 
