@@ -4,6 +4,9 @@ import useFetch from 'react-fetch-hook'
 
 import Breadcrumb from '../components/Breadcrumb'
 import SearchBar from '../components/SearchBar'
+import AlertFailed from '../components/alert/Failed'
+import AlertNotFound from '../components/alert/NotFound'
+
 import giphy from '../libs/giphy'
 
 const useQuery = () => new URLSearchParams(useLocation().search)
@@ -31,6 +34,19 @@ const Search: FC = (): JSX.Element => {
     }
   )
 
+  let Alert = <div />
+  if (isLoading) {
+    Alert = (
+      <div className="spinner-border text-center" role="status">
+        <span className="visually-hidden">Loading ⏳ ...</span>
+      </div>
+    )
+  } else if (error) {
+    Alert = <AlertFailed />
+  } else if (data && !data.data.length) {
+    Alert = <AlertNotFound />
+  }
+
   return (
     <>
       <div className="col-md-8 col-xs-6">
@@ -45,25 +61,7 @@ const Search: FC = (): JSX.Element => {
           }}
         />
       </div>
-      <div className="row justify-content-md-center">
-        {isLoading && (
-          <div className="spinner-border text-center" role="status">
-            <span className="visually-hidden">Loading ⏳ ...</span>
-          </div>
-        )}
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            Sorry, we are facing a failure while fetching your giphy(s), maybe
-            you can try again later 😿
-          </div>
-        )}
-        {data && !data.data.length && (
-          <div className="alert alert-danger" role="alert">
-            Your keyword doesn&apos;t fit with any giphy(s), you can try with
-            another keyword 🤡
-          </div>
-        )}
-      </div>
+      <div className="row justify-content-md-center">{Alert}</div>
     </>
   )
 }
