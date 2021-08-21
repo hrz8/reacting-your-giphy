@@ -6,6 +6,7 @@ body {
 
 a {
   color: #83b5ff;
+  text-decoration: none;
 }
 
 a:hover {
@@ -14,4 +15,26 @@ a:hover {
 
 .form-text {
   color: #b0b6bb;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2001;
+}
+
+.lightbox .lightbox-close-button {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
 }

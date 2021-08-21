@@ -9,6 +9,7 @@ interface GifListProps {
 
 const GifItem: FC<GifListProps> = ({ gif }: GifListProps): JSX.Element => {
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [lightboxOpened, setLightboxOpened] = useState(false)
 
   return (
     <div className="card p-0" style={{ width: '18rem' }}>
@@ -17,6 +18,7 @@ const GifItem: FC<GifListProps> = ({ gif }: GifListProps): JSX.Element => {
         className="card-img-top"
         alt={gif.title}
         onLoad={() => setImageLoaded(true)}
+        onClick={() => setLightboxOpened(true)}
         style={{
           display: imageLoaded ? 'block' : 'none',
           objectFit: 'cover',
@@ -25,6 +27,17 @@ const GifItem: FC<GifListProps> = ({ gif }: GifListProps): JSX.Element => {
         }}
       />
       {!imageLoaded && <GifLoading />}
+      {lightboxOpened && (
+        <div className="lightbox">
+          <a
+            className="lightbox-close-button"
+            onClick={() => setLightboxOpened(false)}
+          >
+            &times;
+          </a>
+          <img src={gif.images.original.url} />
+        </div>
+      )}
     </div>
   )
 }

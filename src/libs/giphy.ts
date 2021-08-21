@@ -17,6 +17,9 @@ export interface GiphyDataResponse {
     downsized_medium: {
       url: string
     }
+    original: {
+      url: string
+    }
   }
   title: string
   source: string
