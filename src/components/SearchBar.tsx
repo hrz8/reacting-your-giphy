@@ -25,7 +25,7 @@ const SearchBar: FC<SearcBarProps> = ({
           className="form-control"
           id="inputQuery"
           aria-describedby="queryHelp"
-          placeholder="Search giphy..."
+          placeholder="Search your fave giphy 💖..."
           value={keyword}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             onChange(e)
