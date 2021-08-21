@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+
+import Breadcrumb from '../components/Breadcrumb'
 import SearchBar from '../components/SearchBar'
 
 const useQuery = () => new URLSearchParams(useLocation().search)
@@ -12,6 +14,7 @@ const Search: FC = (): JSX.Element => {
 
   return (
     <>
+      <Breadcrumb />
       <SearchBar
         keyword={keywordUser || ''}
         onChange={(e) => setKeywordUser(e.target.value)}

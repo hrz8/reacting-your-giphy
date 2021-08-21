@@ -1,3 +1,17 @@
 body {
   margin: 0;
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+a {
+  color: #83b5ff;
+}
+
+a:hover {
+  color: #fff;
+}
+
+.form-text {
+  color: #b0b6bb;
 }
