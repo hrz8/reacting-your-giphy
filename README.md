@@ -46,10 +46,16 @@ VITE_GIPHY_API_KEY=YourAPIKey
 
 ### Run Locally 🏃
 
-Run app locally using `yarn`. By default this app running using `vite`
+Run app locally using `yarn`. By default this app running using `vite` (https://vitejs.dev/guide/#command-line-interface)
 
 ```bash
 $ yarn dev
+```
+
+By default it will running in your http://localhost:3000. You can specify the `PORT` as you want as well in the cli or by updating the `package.json` file
+
+```bash
+$ yarn dev --port 3999
 ```
 
 ### Debugging 🕵️‍♂️
