@@ -12,8 +12,12 @@ const App: FC = (): JSX.Element => {
         </div>
         <div className="row justify-content-md-center">
           <div className="text-center">
-            <Link to="/search" className="btn btn-primary m-2">Search Your Giphy</Link>
-            <Link to="/search?q=iron%20man" className="btn btn-primary m-2">Iron Man Giphy</Link>
+            <Link to="/search" className="btn btn-primary m-2">
+              Search Your Giphy
+            </Link>
+            <Link to="/search?q=iron%20man" className="btn btn-primary m-2">
+              Iron Man Giphy
+            </Link>
           </div>
         </div>
       </div>
