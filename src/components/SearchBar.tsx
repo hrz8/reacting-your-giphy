@@ -17,7 +17,7 @@ const SearchBar: FC<SearcBarProp> = ({
   }, [])
 
   return (
-    <form>
+    <form onSubmit={(e) => e.preventDefault()}>
       <div className="mb-5">
         <input
           type="text"

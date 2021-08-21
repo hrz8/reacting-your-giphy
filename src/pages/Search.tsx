@@ -4,34 +4,9 @@ import useFetch from 'react-fetch-hook'
 
 import Breadcrumb from '../components/Breadcrumb'
 import SearchBar from '../components/SearchBar'
-import qs from 'qs'
+import giphy from '../libs/giphy'
 
 const useQuery = () => new URLSearchParams(useLocation().search)
-
-const GIPHY_API_URL = 'https://api.giphy.com/v1'
-
-interface GiphyQueryParams {
-  api_key: string
-  q: string
-  limit: number
-  offset: number
-  rating: string
-  lang: string
-}
-
-const stringifyQuery = (q: string, apiKey: string): string => {
-  const params: GiphyQueryParams = {
-    api_key: apiKey,
-    q,
-    limit: 9,
-    offset: 0,
-    rating: 'g',
-    lang: 'en',
-  }
-  return qs.stringify(params, {
-    encodeValuesOnly: true,
-  })
-}
 
 const Search: FC = (): JSX.Element => {
   useEffect(() => {
@@ -44,11 +19,13 @@ const Search: FC = (): JSX.Element => {
   )
   const [finalQuery, setFinalQuery] = useState<string>(keywordUser)
 
+  const giphyEndpoint = giphy.endpointGenerator({
+    api_key: import.meta.env.VITE_GIPHY_API_KEY,
+    q: finalQuery,
+    limit: 9,
+  })
   const { isLoading, error, data } = useFetch<{ data: Array<{ id: string }> }>(
-    `${GIPHY_API_URL}/gifs/search?${stringifyQuery(
-      finalQuery,
-      import.meta.env.VITE_GIPHY_API_KEY
-    )}`,
+    giphyEndpoint,
     {
       depends: [!!finalQuery],
     }
