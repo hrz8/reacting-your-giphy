@@ -20,7 +20,7 @@ const SearchBar: FC<SearcBarProps> = ({
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="mb-5">
         <input
-          autoFocus={true}
+          autoFocus={!keyword ? true : false}
           type="text"
           className="form-control"
           id="inputQuery"
