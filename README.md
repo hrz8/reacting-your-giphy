@@ -38,7 +38,7 @@ $ cd reacting-your-ghipy
 $ touch .env
 ```
 
-Insert your Giphy API Key in `./.env` file
+You can found the API Key from Giphy Dashboard (https://developers.giphy.com/dashboard/). Insert your Giphy API Key in `./.env` file
 
 ```
 VITE_GIPHY_API_KEY=YourAPIKey
@@ -70,7 +70,7 @@ Debug app using VsCode Debugger Tool
 
 ### Build the app 🔧
 
-Build the app using `yarn` (again, it will using `vite` under the hood). This command below will serve you `./dist/` folder which you can deploy anywhere
+Build the app using `yarn` (again, it will using `vite` under the hood to compile and build). This command below will serve you `./dist/` folder which you can deploy anywhere
 
 ```bash
 $ yarn build
