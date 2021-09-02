@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import useFetch from 'react-fetch-hook'
+import { useHistory } from 'react-router-dom'
 
 import Breadcrumb from '../components/Breadcrumb'
 import SearchBar from '../components/SearchBar'
@@ -21,6 +22,7 @@ const Search: FC = (): JSX.Element => {
     document.title = '🔍 Reacting your Ghipy'
   }, [])
 
+  const history = useHistory()
   const keywordQuery = useQuery()
   const [keywordUser, setKeywordUser] = useState<string>(
     keywordQuery.get('q') || ''
@@ -66,6 +68,11 @@ const Search: FC = (): JSX.Element => {
           }}
           onDebounceChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setFinalQuery(e.target.value)
+            history.push({
+              pathname: '/search',
+              search:
+                '?' + new URLSearchParams({ q: e.target.value }).toString(),
+            })
           }}
         />
       </div>
